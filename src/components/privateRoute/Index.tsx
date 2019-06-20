@@ -2,13 +2,13 @@
  * @Description: 路由组件
  * @Author: your name
  * @Date: 2019-05-30 19:58:00
- * @LastEditTime: 2019-06-11 20:32:09
+ * @LastEditTime: 2019-06-20 12:02:57
  * @LastEditors: Please set LastEditors
  */
 /**
  * 通过判断登录、权限 动态生成Route
  */
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import RouteMap from '../../route/Route'
 
@@ -38,15 +38,21 @@ const PrivateRoute: React.FC<any> = props => {
                 />
               }
               if (!item.needLogin) { // 不需要登录
-                return <item.component {...props} />
+                return <Suspense fallback={<h1>loading</h1>}>
+                  <item.component {...props} />
+                </Suspense>
               } else { // 需要登录
                 if (token) { // 已登录
                   if (!item.auth) { // 没有权限限制
-                    return <item.component {...props} />
+                    return <Suspense fallback={<h1>loading</h1>}>
+                      <item.component {...props} />
+                    </Suspense>
                   } else { // 有权限限制
                     let _arr: string[] = [];
                     if (_arr.includes(auth)) { // 拥有权限
-                      return <item.component {...props} />
+                      return <Suspense fallback={<h1>loading</h1>}>
+                        <item.component {...props} />
+                      </Suspense>
                     } else { // 未拥有权限
                       // 重定向到未拥有权限页
                       return <Redirect
