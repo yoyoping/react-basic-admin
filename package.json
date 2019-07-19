@@ -1,5 +1,5 @@
 {
-  "name": "react-basic-admin",
+  "name": "{{name}}",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
