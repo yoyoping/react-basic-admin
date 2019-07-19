@@ -2,7 +2,7 @@
  * @Description: 路由组件
  * @Author: your name
  * @Date: 2019-05-30 19:58:00
- * @LastEditTime: 2019-06-20 12:02:57
+ * @LastEditTime: 2019-06-25 11:36:06
  * @LastEditors: Please set LastEditors
  */
 /**
@@ -15,14 +15,22 @@ import RouteMap from '../../route/Route'
 import NotFound from '../../pages/error/NotFound'
 import NoPermissions from '../../pages/error/NoPermissions'
 
-const PrivateRoute: React.FC<any> = props => {
+interface IRoute {
+  path: string,
+  redirect?: string | null,
+  component: any,
+  needLogin?: boolean,
+  auth?: string[]
+}
+
+const PrivateRoute: React.FC<any> = () => {
   const [token] = useState(sessionStorage.getItem('token')) // 获取当前是否登录
   const [auth] = useState<any | null>(sessionStorage.getItem('auth')) // 获取当前权限
   return (
     <Switch>
       {
         // 动态生成路由
-        RouteMap.map((item, index) => {
+        RouteMap.map((item: IRoute, index: number) => {
           return <Route
             key={index}
             path={item.path}

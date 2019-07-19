@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Fetch from '../../fetch/fly'
 
-interface ListType {
-  id: number
-}
 
 const List: React.FC<any> = () => {
   const [list, setList] = useState([])

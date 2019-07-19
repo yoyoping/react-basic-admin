@@ -3,7 +3,7 @@ import ApiUri from "./api"
 // import { createHashHistory } from 'history' // hashRouter编程式跳转
 
 // 请求参数类型
-interface ParamsType {
+interface IParams {
 	uriCode: any,
 	method?: string;
 }
@@ -40,8 +40,6 @@ Fly.interceptors.response.use((response:any) => {
 			console.error('系统繁忙！')
 		} else if (error.response.status === 404) {
 			console.error('资源未找到！')
-		} else if (error.response.status === 406) {
-			console.error(error.response.data.detail)
 		} else {
 			console.error(error.response.data.detail)
 		}
@@ -55,7 +53,7 @@ Fly.interceptors.response.use((response:any) => {
 
 
 let newApiUri:any = ApiUri
-const Fetch = (params:ParamsType) => {
+const Fetch = (params:IParams) => {
 	// 当前api对象
 	const uriObj = newApiUri[params[`uriCode`]]
 	// 请求的url
