@@ -9,7 +9,7 @@
  */
 
 const Api = {
-  'BS01': { title: '获取banner', uri: '/banner', method: 'GET' }
+  'BS01': { title: '获取banner', uri: '/banner' }
 }
 
 export default Api;

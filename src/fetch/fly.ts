@@ -10,7 +10,7 @@ interface IParams {
 
 //添加请求拦截器
 Fly.interceptors.request.use((config:any) => {
-	config.baseURL = process.env.NODE_ENV === `production` ? `http://about.bingodac.com` : ``
+	config.baseURL = process.env.NODE_ENV === `production` ? `/` : ``
 	//给所有请求添加自定义header
 	config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
 	config.headers['x-access-token'] = localStorage['token'] || ''
@@ -58,16 +58,19 @@ const Fetch = (params:IParams) => {
 	const uriObj = newApiUri[params[`uriCode`]]
 	// 请求的url
   let uri = uriObj.uri
-  // 请求的方法类型
-  const method_ = uriObj.method || `GET`
+	// 请求的方法类型
+	let method_: 'get' | 'post' | 'patch' | 'delete' | 'put'
+	switch (uriObj.method) {
+		case 'post' || 'patch' || 'delete' || 'put':
+			method_ = uriObj.method;
+		default:
+			method_ = 'get'
+	}
   // 获取传给后端的参数
   let param = JSON.parse(JSON.stringify(params))
   delete param[`uriCode`]
   delete param.method
-  if (method_ === `GET`) {
-		return Fly.get(uri, param)
-  }
-  return Fly.post(uri, param)
+  return Fly[method_](uri, param)
 }
 
 export default Fetch
