@@ -1,0 +1,33 @@
+.layout .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color .3s;
+}
+
+.layout .trigger:hover {
+  color: #1890ff;
+}
+
+.layout .logo {
+  margin: 5px;
+  text-align: center;color: #fff;line-height: 32px;font-size: 16px;
+  letter-spacing: 1px;
+  img{
+    height: 50px;
+  }
+  &.small{
+    font-size: 12px;
+    img{
+      padding: 10px;
+    }
+  }
+}
+.layout{
+  height: 100%;
+}
+
+.dfnContent{
+  overflow-y: auto;overflow-x: hidden;height: calc(100vh - 112px);
+}

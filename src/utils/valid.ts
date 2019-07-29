@@ -1,14 +1,28 @@
 /**
  * 只针对于输入antd的form做的valide验证
  */
+
 import * as verify from './check'
+/**
+   * 验证账号
+   *
+   * @memberof DailyIncome
+   */
+export const isUser = (rule:any, value:string, callback:any) => {
+  if (value && !verify.validsp_(value)) {
+    callback('数字、26个英文字母 . - _')
+  }
+  // Note: 必须总是返回一个 callback，否则 validateFieldsAndScroll 无法响应
+  callback()
+}
+
 /**
    * 验证密码
    *
    * @memberof DailyIncome
    */
 export const isPwd = (rule:any, value:string, callback:any) => {
-  if (value && !verify.validsp_(value)) {
+  if (value && !verify.validsp_range(value)) {
     callback('6-20个字符（数字、26个英文字母 . - _）')
   }
   // Note: 必须总是返回一个 callback，否则 validateFieldsAndScroll 无法响应

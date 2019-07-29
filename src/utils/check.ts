@@ -36,6 +36,12 @@ export function validatAlphabetsNumOthers (str: string) {
 
 /* 数字、26个英文字母 . - _ */
 export function validsp_ (str: string) {
+  const reg = /^[A-Za-z0-9._-]{1,200}$/
+  return reg.test(str)
+}
+
+/* 数字、26个英文字母 . - _ ,6-20字符*/
+export function validsp_range (str: string) {
   const reg = /^[A-Za-z0-9._-]{6,20}$/
   return reg.test(str)
 }
