@@ -2,6 +2,7 @@ import React from 'react';
 import './index.scss'
 import { Form, Input, Button } from 'antd'
 import * as Valid from '../../utils/valid'
+import logo from '../../assets/images/logo.png'
 
 const Login: React.FC<any> = (props) => {
 
@@ -22,7 +23,7 @@ const Login: React.FC<any> = (props) => {
   return (
     <div className='login'>
       <div className="login-form">
-        <img src="/images/logo.png" className="logo" alt=""/>
+        <img src={logo} className="logo" alt=""/>
         <Form layout="horizontal" onSubmit={handleSubmit} labelCol={{ span: 5 }} wrapperCol={{ span: 17, offset: 1 }}>
           <Form.Item label="账号">
             {getFieldDecorator('username', {

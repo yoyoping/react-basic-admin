@@ -4,6 +4,7 @@ import { Layout, Menu, Icon, Row, Col } from 'antd';
 import { Link } from 'react-router-dom'
 import './index.scss'
 import menulist from '../../config/menu'
+import logo from '../../assets/images/logo.png'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -31,7 +32,7 @@ const Layout_: React.FC<any> = (props) => {
           collapsed={collapsed}
         >
           <div className={collapsed ? 'logo small' : 'logo'}>
-            <img src="/images/logo.png" alt="" />
+            <img src={logo} alt="" />
           </div>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={currentMenu}>
 
